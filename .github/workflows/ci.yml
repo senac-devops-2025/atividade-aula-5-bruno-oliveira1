@@ -36,9 +36,11 @@ jobs:
 
     - name: Run Gitleaks secret scan
       uses: gitleaks/gitleaks-action@v2
+      env:
+        GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
       with:
         args: "--verbose --redact"
-
+        
     - name: Create app artifact
       run: |
         zip -r app-dist.zip app/
